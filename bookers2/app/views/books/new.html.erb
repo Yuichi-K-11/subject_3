@@ -1,0 +1,15 @@
+<% if flash[:notice] %>
+  <div class= "flash">
+    <%=flash[:notice] %>
+  </div>
+<% end %>
+
+<p>Title:
+  <%= @book.title %>
+</p>
+
+<p>Opinion:
+  <%= @book.body %>
+</p>
+
+<%= link_to "Create Book", new_book_path(@book) %>

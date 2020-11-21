@@ -1,0 +1,16 @@
+<div class="profile-container">
+  <h3 class="profile-name"><%= @user.name %></h3>
+  <%= image_tag('sample-author1.jpg') %>
+</div>
+
+<% @books.each do |book| %>
+<div>
+  <%= link_to book_path(post_image.id) do %>
+    <%= attachment_image_tag book, :image %>
+  <% end %>
+  <p>投稿ユーザー画像：<%= image_tag('sample-author1.jpg') %></p>
+  <p>説明：<%= book.caption %></p>
+  <p>ユーザーネーム：<%= user_id.user.name %></p>
+</div>
+<% end %>
+<%= paginate @books %>
