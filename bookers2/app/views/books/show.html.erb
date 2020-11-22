@@ -1,8 +1,8 @@
-<!--USER SHOW-->
-<%= render 'users/list', user: @user, book: @book, books: @books %>
+<!--BOOK SHOW-->
+<%= render 'users/list', user: @user, book: @book , books: @books %>
 
 <div class='col-md-8 offset-md-1'>
-  <h2>Books</h2>
+  <h2>Book Detail</h2>
   <table class='table table-hover table-inverse'>
     <thead>
       <tr>
@@ -17,7 +17,9 @@
       <% @books.each do |book| %>
         <tr>
           <td>
-
+              <div class = "books-index-item">
+                <%= book.user.name %>
+              </div>
           </td>
           <td>
               <div class = "books-index-item">
@@ -28,7 +30,12 @@
               <div class = "books-index-item">
                 <%= book.body %>
               </div>
-
+          </td>
+          <td>
+            <%=link_to("Edit",edit_book_path(book.id),class: 'btn bg-success text-light btn-outline-success' ) %>
+          </td>
+          <td>
+            <%=link_to("Destroy",book_path(book.id) ,method: :delete , data: {confirm:'本当に消しますか?' } ,class: 'btn bg-danger text-light btn-outline-danger' )%>
           </td>
         </tr>
       <% end %>
