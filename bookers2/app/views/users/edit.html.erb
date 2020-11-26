@@ -1,24 +1,38 @@
 <div class='container'>
   <div class='row'>
-    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+    <div class="col">
       <h2>User info</h2>
+        <% if @user.errors.any? %>
+          <div class= "form-error text-danger">
+            <%= @user.errors.count %>件のerrorが発生しました
+            <ul>
+              <% @user.errors.full_messages.each do |message| %>
+                <li>
+                  <%= message %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
         <%= form_with model:@user, local:true do |f| %>
           <label for="inputName">Name</label>
           <div>
-          <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"Name"%>
+          <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"Name" %>
           </div>
           <div>
-          <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
+          <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
           </div>
           <label for="inputImage">Image</label>
           <div>
           <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
           </div>
+          <label for="inputIntroduction">Introduction</label>
           <div>
-          <%= f.text_field :introduction, autofocus: true, id:"inputIntroduction", placeholder:"Introduction"%>
+          <%= f.text_field :introduction, autofocus: true, id:"inputIntroduction", placeholder:"" %>
           </div>
+          <%= f.submit 'Update User' %>
         <% end %>
-        <%=link_to "Update User", user_path, class: 'btn bg-secondary text-light btn-outline-secondary' %>
       </form>
     </div>
   </div>
