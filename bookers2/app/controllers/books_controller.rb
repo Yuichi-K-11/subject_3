@@ -23,10 +23,6 @@ class BooksController < ApplicationController
     end
   end
 
-  # def edit
-  #   @book = Book.find(params[:id])
-  # end
-
   def edit
     @book = Book.find(params[:id])
     if @book.user != current_user
@@ -37,6 +33,7 @@ class BooksController < ApplicationController
   def show
     @book_new = Book.new
     @book = Book.find(params[:id])
+    @user = @book.user
   end
 
   def update
@@ -48,7 +45,6 @@ class BooksController < ApplicationController
     else
       render action: :edit
     end
-
   end
 
   def destroy

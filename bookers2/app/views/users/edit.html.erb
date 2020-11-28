@@ -1,37 +1,36 @@
 <div class='container'>
   <div class='row'>
-    <div class="col">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto my-3">
       <h2>User info</h2>
         <% if @user.errors.any? %>
-          <div class= "form-error text-danger">
-            <%= @user.errors.count %>件のerrorが発生しました
+          <div class= "form-error text-danger h2">
+            <%= @user.errors.count %>errors prohibited this obj from being saved:
             <ul>
               <% @user.errors.full_messages.each do |message| %>
-                <li>
+                <li class = "h6">
                   <%= message %>
                 </li>
               <% end %>
             </ul>
           </div>
         <% end %>
-
         <%= form_with model:@user, local:true do |f| %>
-          <label for="inputName">Name</label>
+          <label for="inputName ">Name</label>
           <div>
-          <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"Name" %>
+          <%= f.text_field :name, class: 'form-control my-2',autofocus: true, id:"inputName", placeholder:"Name" %>
           </div>
           <div>
-          <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+          <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" , class: 'my-2'%>
           </div>
-          <label for="inputImage">Image</label>
+          <label for="inputImage ">Image</label>
           <div>
-          <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+          <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" , class: 'my-2'%>
           </div>
-          <label for="inputIntroduction">Introduction</label>
+          <label for="inputIntroduction ">Introduction</label>
           <div>
-          <%= f.text_field :introduction, autofocus: true, id:"inputIntroduction", placeholder:"" %>
+          <%= f.text_area :introduction, class: 'form-control my-2', autofocus: true, id:"inputIntroduction", placeholder:"" %>
           </div>
-          <%= f.submit 'Update User' %>
+          <%= f.submit 'Update User' ,class: 'btn btn-secondary my-2' %>
         <% end %>
       </form>
     </div>

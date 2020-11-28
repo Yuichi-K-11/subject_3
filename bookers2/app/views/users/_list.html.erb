@@ -1,5 +1,20 @@
 <!--USER info Code-->
-<div class='col-md-3'>
+<div class= 'col-md-12 mt-3'>
+  <% if book.errors.any? %>
+  <div class= "form-error text-danger h2 mx-5 mt-3">
+    <%= book.errors.count %>errors prohibited this obj from being saved:
+    <ul>
+      <% book.errors.full_messages.each do |message| %>
+        <li class ="h6 mt-2">
+          <%= message %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+</div>
+
+<div class='col-md-3 mt-3'>
   <h2>User info</h2>
     <table class='table'>
       <tr>
@@ -9,9 +24,9 @@
       </tr>
       <tr>
         <th>
-        <div class="field">
-          <label for="name">name</label>
-        </div>
+          <div class="field">
+            <label for="name">name</label>
+          </div>
         </th>
         <th><%= user.name %></th>
       </tr>
@@ -24,32 +39,20 @@
         <th><%= user.introduction %></th>
       </tr>
     </table>
-      <%= link_to "", edit_user_path(user.id) ,class: 'row btn btn-outline-secondary btn-block fas fa-user-cog' %>
+  <%= link_to "", edit_user_path(user.id) ,class: 'row btn btn-outline-secondary btn-block fas fa-user-cog' %>
   <h2 class="mt-3">New book</h2>
   <div>
     <%= form_with model: book, local: true do |f| %>
-      <% if book.errors.any? %>
-        <div class= "form-error">
-          <%= book.errors.count %>件のerrorが発生しました
-          <ul>
-            <% book.errors.full_messages.each do |message| %>
-              <li>
-                <%= message %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
       <div class="field">
         <label for="book_title">Title</label>
       </div>
-            <%= f.text_field :title %>
+      <%= f.text_field :title , class: 'form-control my-2'%>
       <div class="field">
         <label for="book_opinion">Opinion</label>
       </div>
-        <%= f.text_area :body %>
+        <%= f.text_area :body , class: 'form-control my-2'%>
       <div class="actions">
-        <%= f.submit 'Create Book', class: 'btn bg-success text-light btn-outline-success' %>
+        <%= f.submit 'Create Book', class: 'btn bg-success text-light btn-outline-success my-2' %>
       </div>
     <% end %>
   </div>

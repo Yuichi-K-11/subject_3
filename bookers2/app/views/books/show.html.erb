@@ -1,37 +1,27 @@
 <!--BOOK SHOW-->
 <div class='container'>
   <div class='row'>
-
     <%= render 'users/list', user: @book.user, book: @book_new %>
-
-    <div class='col-md-8 offset-md-1'>
+    <div class='col-md-8 offset-md-1 mt-3'>
       <h2>Book detail</h2>
       <table class='table table-hover table-inverse'>
-        <thead>
-          <tr>
-            <th></th>
-            <th>Title</th>
-            <th>Opinion</th>
-            <th colspan="3"></th>
-          </tr>
-        </thead>
         <tbody>
             <tr>
               <td>
-                <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
-                  <div class = "books-index-item">
-                    <%= link_to @book.user.name, user_path %>
-                  </div>
+                <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" ,size: "40x40" %>
+                <div class = "books-index-item">
+                  <%= link_to @book.user.name, user_path(@user) %>
+                </div>
               </td>
               <td>
-                  <div class = "books-index-item">
-                    <%= link_to @book.title , user_path %>
-                  </div>
+                <div class = "books-index-item">
+                  <%= link_to @book.title , user_path(@user) %>
+                </div>
               </td>
               <td>
-                  <div class = "books-index-item">
-                    <%= @book.body %>
-                  </div>
+                <div class = "books-index-item">
+                  <%= @book.body %>
+                </div>
               </td>
               <td>
                 <% if @book.user == current_user %>

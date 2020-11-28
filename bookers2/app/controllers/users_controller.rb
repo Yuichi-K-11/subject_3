@@ -12,10 +12,6 @@ class UsersController < ApplicationController
     @books = @user.books
   end
 
-  # def edit
-  #   @user = User.find(params[:id])
-  # end
-
   def edit
     @user = User.find(params[:id])
     if @user != current_user
@@ -39,5 +35,4 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image)
   end
-
 end
